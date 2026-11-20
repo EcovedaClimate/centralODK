@@ -25,11 +25,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 COPY . .
 RUN mkdir /tmp/sentry-versions
-RUN git describe --tags --dirty --always > /tmp/sentry-versions/central
+RUN git describe --tags --dirty --always > /tmp/sentry-versions/central || echo unknown > /tmp/sentry-versions/central
 WORKDIR /server
-RUN git describe --tags --dirty --always > /tmp/sentry-versions/server
+RUN git describe --tags --dirty --always > /tmp/sentry-versions/server || echo unknown > /tmp/sentry-versions/server
 WORKDIR /client
-RUN git describe --tags --dirty --always > /tmp/sentry-versions/client
+RUN git describe --tags --dirty --always > /tmp/sentry-versions/client || echo unknown > /tmp/sentry-versions/client
 
 
 
