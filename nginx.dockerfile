@@ -6,10 +6,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./ ./
-RUN files/prebuild/write-version.sh
+RUN bash -eu files/prebuild/write-version.sh || echo "version unknown" > /tmp/version.txt
 
 ARG SKIP_FRONTEND_BUILD
-RUN files/prebuild/build-frontend.sh
+RUN bash -eu files/prebuild/build-frontend.sh
 
 
 
