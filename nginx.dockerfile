@@ -6,7 +6,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./ ./
-RUN bash -eu files/prebuild/write-version.sh || echo "version unknown" > /tmp/version.txt
+RUN bash -eu files/prebuild/write-version.sh || echo "versions: v2026.1.2" > /tmp/version.txt
 
 ARG SKIP_FRONTEND_BUILD
 RUN bash -eu files/prebuild/build-frontend.sh
